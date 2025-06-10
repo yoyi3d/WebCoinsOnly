@@ -51,20 +51,38 @@ main {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
 }
 
-/* === GALERÍA === */
+/* === GALERÍA (ACTUALIZADO) === */
 .section-galeria {
   padding: 5rem 1rem;
   background: transparent;
 }
 
+.section-galeria .container {
+  max-width: 100%;
+  padding: 0 2vw;
+}
+
+.section-galeria .row {
+  margin: 0;
+  align-items: center;
+}
+
+.section-galeria h2 {
+  font-size: 1.8rem;
+}
+
 .text-justify {
   text-align: justify;
+  font-size: 1rem;
+  line-height: 1.6;
+  padding-right: 10px;
 }
 
 .carousel-container {
   position: relative;
   overflow: hidden;
   border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
 .carousel-wrapper {
@@ -156,6 +174,23 @@ footer a:hover i {
 }
 
 /* === RESPONSIVE === */
+@media (max-width: 991.98px) {
+  .section-galeria .col-lg-8,
+  .section-galeria .col-lg-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .section-galeria .row {
+    gap: 40px;
+  }
+
+  .carousel-image {
+    max-height: 300px;
+    object-fit: cover;
+  }
+}
+
 @media (max-width: 768px) {
   .video-wrapper {
     padding: 0 1rem;
@@ -210,8 +245,12 @@ footer a:hover i {
   font-size: 1.2rem;
   transition: transform 0.4s ease, opacity 0.4s ease;
   opacity: 0;
-  pointer-events: auto;
+  pointer-events: none;
   transform: translate(0, 0); /* default position */
+}
+
+.menu-items.active a {
+  pointer-events: auto; /* ← solo son clicables cuando el menú está desplegado */
 }
 
 .menu-items.active a:nth-child(1) { transform: translate(-10px, -80px); opacity: 1; }
@@ -219,12 +258,13 @@ footer a:hover i {
 .menu-items.active a:nth-child(3) { transform: translate(-80px, -10px); opacity: 1; }
 .menu-items.active a:nth-child(4) { transform: translate(-70px, 40px);  opacity: 1; }
 
-
-/* Posiciones radiales */
-.menu-items a:nth-child(1) { transform: translate(0, 0); }
-.menu-items a:nth-child(2) { transform: translate(0, 0); }
-.menu-items a:nth-child(3) { transform: translate(0, 0); }
-.menu-items a:nth-child(4) { transform: translate(0, 0); }
+/* Posiciones radiales por defecto */
+.menu-items a:nth-child(1),
+.menu-items a:nth-child(2),
+.menu-items a:nth-child(3),
+.menu-items a:nth-child(4) {
+  transform: translate(0, 0);
+}
 
 /* Mostrar solo en móviles */
 @media (max-width: 768px) {
