@@ -1,12 +1,46 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
-body{
+html, body {
+  height: 100%;
+}
 
-    background-image: none ;
-    
+body {
+  display: flex;
+  flex-direction: column;
+  background-image: url("../Media/Tileable_BG.webp");
+  /* background-size: cover; */
+  background-position: center;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+footer a:hover i {
+  color: #ffc107; /* doradito al pasar el ratón */
+  transition: color 0.2s ease-in-out;
+}
+
+#personaje {
+  max-height: 300px;
+  display: block;
+  margin: 0 auto 1rem auto;
+}
+
+#dialogo {
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  display: inline-block;
+  max-width: 80%;
+  font-size: 1.3rem;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
 }
