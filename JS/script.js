@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // --- Frases intro ---
   const frases = [
-    "Me han dicho que estas buscando trabajo.",
+    "Me han dicho que estás buscando trabajo.",
     "Bienvenido a la web de CoinsOnly.",
     "Que conste que aquí sólo aceptamos... ¡monedas!",
     "Pasa y disfruta de nuestros productos."
@@ -10,71 +11,82 @@ document.addEventListener("DOMContentLoaded", function () {
   let index = 0;
 
   function mostrarFrase() {
-    if (index < frases.length) {
+    if (dialogo && index < frases.length) {
       dialogo.textContent = frases[index];
       index++;
-      setTimeout(mostrarFrase, 3000); // cambia de frase cada 6s
+      setTimeout(mostrarFrase, 3000);
     } else {
       setTimeout(() => {
-        window.location.href = "main.html"; // Redirige al acabar
-      }, 2000); // espera un poco para no cortar el último diálogo
+        window.location.href = "main.html";
+      }, 2000);
     }
   }
 
-  mostrarFrase();
-});
+  if (dialogo) mostrarFrase();
 
-// Carrusel
-let currentIndex = 0;
-const images = document.querySelectorAll('.carousel-image');
-const indicators = document.querySelectorAll('.indicator');
+  // --- Carrusel ---
+  const images = document.querySelectorAll('.carousel-image');
+  const indicators = document.querySelectorAll('.indicator');
 
-function showImage(index) {
-  images.forEach((img, i) => {
-    img.classList.toggle('active', i === index);
-    indicators[i].classList.toggle('active', i === index);
+  function showImage(index) {
+    images.forEach((img, i) => {
+      img.classList.toggle('active', i === index);
+      indicators[i].classList.toggle('active', i === index);
+    });
+  }
+
+  let currentIndex = 0;
+
+  const nextBtn = document.querySelector('.control-next');
+  const prevBtn = document.querySelector('.control-prev');
+
+  if (nextBtn && prevBtn) {
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % images.length;
+      showImage(currentIndex);
+    });
+
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      showImage(currentIndex);
+    });
+  }
+
+  indicators.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      currentIndex = i;
+      showImage(currentIndex);
+    });
   });
-}
 
-document.querySelector('.control-next').addEventListener('click', () => {
-  currentIndex = (currentIndex + 1) % images.length;
-  showImage(currentIndex);
-});
+  // --- Zoom ---
+  const zoomOverlay = document.getElementById('zoomOverlay');
+  const zoomImage = document.getElementById('zoomImage');
 
-document.querySelector('.control-prev').addEventListener('click', () => {
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  showImage(currentIndex);
-});
-
-indicators.forEach((dot, i) => {
-  dot.addEventListener('click', () => {
-    currentIndex = i;
-    showImage(currentIndex);
+  images.forEach(img => {
+    img.addEventListener('click', () => {
+      if (zoomOverlay && zoomImage) {
+        zoomImage.src = img.src;
+        zoomOverlay.style.display = 'flex';
+      }
+    });
   });
-});
 
-// Zoom
-const zoomOverlay = document.getElementById('zoomOverlay');
-const zoomImage = document.getElementById('zoomImage');
+  if (zoomOverlay) {
+    zoomOverlay.addEventListener('click', () => {
+      zoomOverlay.style.display = 'none';
+      zoomImage.src = '';
+    });
+  }
 
-images.forEach(img => {
-  img.addEventListener('click', () => {
-    zoomImage.src = img.src;
-    zoomOverlay.style.display = 'flex';
-  });
-});
-
-zoomOverlay.addEventListener('click', () => {
-  zoomOverlay.style.display = 'none';
-  zoomImage.src = '';
-});
-
-
-// menu radial
+  // --- Menú radial ---
   const menuToggle = document.getElementById("menuToggle");
   const menuItems = document.getElementById("menuItems");
 
-  menuToggle.addEventListener("click", () => {
-    menuItems.classList.toggle("active");
-    menuToggle.classList.toggle("open");
-  });
+  if (menuToggle && menuItems) {
+    menuToggle.addEventListener("click", () => {
+      menuItems.classList.toggle("active");
+      menuToggle.classList.toggle("open");
+    });
+  }
+});
