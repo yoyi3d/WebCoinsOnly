@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // --- Frases intro ---
   const frases = [
     "Me han dicho que estás buscando trabajo.",
     "Bienvenido a la web de CoinsOnly.",
@@ -8,21 +7,103 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   const dialogo = document.getElementById("dialogo");
+  const personaje = document.getElementById("personaje");
   let index = 0;
+  let hablandoInterval;
+  let cambioFraseTimeout;
+  let detenerHablaTimeout;
+  let esperando = false;
+  let finalizado = false;
+
+  function startHablar() {
+    let bocaAbierta = false;
+    hablandoInterval = setInterval(() => {
+      if (personaje) {
+        personaje.src = bocaAbierta
+          ? "Media/Minijefe_BocaAbierta.webp"
+          : "Media/Minijefe.webp";
+        bocaAbierta = !bocaAbierta;
+      }
+    }, 200);
+  }
+
+  function stopHablar() {
+    clearInterval(hablandoInterval);
+    if (personaje) personaje.src = "Media/Minijefe.webp"; // Boca cerrada
+  }
 
   function mostrarFrase() {
-    if (dialogo && index < frases.length) {
-      dialogo.textContent = frases[index];
-      index++;
-      setTimeout(mostrarFrase, 3000);
-    } else {
+    if (finalizado) return;
+
+    if (dialogo && personaje && index < frases.length) {
+      esperando = true;
+      dialogo.style.opacity = 0;
+      stopHablar(); // Cierra boca antes de ocultar
+
       setTimeout(() => {
-        window.location.href = "main.html";
-      }, 2000);
+        dialogo.textContent = frases[index];
+        index++;
+
+        void dialogo.offsetWidth;
+        dialogo.style.opacity = 1;
+
+        startHablar();
+
+        // Detener hablar antes de cambiar
+        detenerHablaTimeout = setTimeout(() => {
+          stopHablar();
+        }, 2500);
+
+        // Mostrar siguiente automáticamente
+        cambioFraseTimeout = setTimeout(() => {
+          esperando = false;
+          mostrarFrase();
+        }, 3000);
+      }, 400);
+    } else {
+      finalizarDialogo();
     }
   }
 
-  if (dialogo) mostrarFrase();
+  function avanzarFrase() {
+    if (finalizado) return;
+
+    clearTimeout(cambioFraseTimeout);
+    clearTimeout(detenerHablaTimeout);
+    stopHablar();
+
+    esperando = false;
+    mostrarFrase();
+  }
+
+  function finalizarDialogo() {
+    if (finalizado) return;
+    finalizado = true;
+    stopHablar();
+    setTimeout(() => {
+      window.location.href = "main.html";
+    }, 1000);
+  }
+
+  function manejarInteraccion() {
+    if (finalizado) return;
+
+    if (esperando) {
+      avanzarFrase(); // Avanza una frase
+    } else {
+      // Si no está esperando (por ejemplo entre frases), no hace nada
+    }
+  }
+
+  document.addEventListener("click", manejarInteraccion);
+  document.addEventListener("touchstart", manejarInteraccion);
+
+  if (dialogo && personaje) {
+    dialogo.style.opacity = 0;
+    personaje.src = "Media/Minijefe.webp"; // Boca cerrada de inicio
+    mostrarFrase();
+  }
+});
 
   // --- Carrusel ---
   const images = document.querySelectorAll('.carousel-image');
@@ -89,4 +170,3 @@ document.addEventListener("DOMContentLoaded", function () {
       menuToggle.classList.toggle("open");
     });
   }
-});
