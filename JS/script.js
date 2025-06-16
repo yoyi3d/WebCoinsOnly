@@ -170,3 +170,18 @@ document.addEventListener("DOMContentLoaded", function () {
       menuToggle.classList.toggle("open");
     });
   }
+
+
+//click cursor
+
+document.addEventListener("click", function (e) {
+  // Si el clic NO fue dentro de algo con la clase "no-click-anim"
+  if (!e.target.closest(".no-click-anim")) {
+    document.body.classList.add("clicking");
+
+    setTimeout(function () {
+      document.body.classList.remove("clicking");
+    }, 100);
+  }
+});
+

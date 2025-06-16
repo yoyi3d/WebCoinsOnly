@@ -18,94 +18,104 @@
 </head>
 
 <body>
-  <header class="bg-dark text-light py-3">
-    <div class="container d-flex align-items-center justify-content-between">
-      <a href="main.html">
-        <img src="Media/Logo Coins Only Final.webp" alt="CoinsOnly Logo" style="height: 50px;" />
-      </a>
-      <nav>
-        <a href="characters.html" class="text-light me-4 text-decoration-none">Personajes</a>
-        <a href="about_us.html" class="text-light me-4 text-decoration-none">About Us</a>
-        <a href="faq.html" class="text-light text-decoration-none">FAQ</a>
-      </nav>
-    </div>
+
+  <!-- HEADER -->
+  <header>
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container-fluid d-flex align-items-center justify-content-between">
+        <!-- Logo -->
+        <a href="main.html" class="navbar-brand">
+          <img src="Media/Logo Coins Only Final.webp" alt="Logo de CoinsOnly" style="height: 50px;" />
+        </a>
+
+        <!-- Enlaces (solo en desktop) -->
+        <div class="d-none d-lg-flex align-items-center">
+          <a href="characters.html" class="text-light me-4 text-decoration-none">Personajes</a>
+          <a href="about_us.html" class="text-light me-4 text-decoration-none">About Us</a>
+          <a href="faq.html" class="text-light text-decoration-none">FAQ</a>
+        </div>
+      </div>
+    </nav>
   </header>
 
+  <!-- MAIN -->
   <main>
     <!-- Sección 1: Tráiler -->
     <section class="section-video">
       <div class="container video-wrapper text-center">
         <div class="ratio ratio-16x9">
-          <iframe width="1259" height="708" src="https://www.youtube.com/embed/xpe6UkhIKlY" title="Trailer Lanzamiento Coins Only!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/xpe6UkhIKlY" title="Trailer Lanzamiento Coins Only!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
-        <a href="https://sleepy-skull-studios.itch.io/coins-only" class="btn btn-warning demo-btn mt-4" target="_blank">🎮 Jugar Demo</a>
+        <a href="https://sleepy-skull-studios.itch.io/coins-only" class="btn btn-warning demo-btn mt-4" target="_blank" rel="noopener noreferrer">🎮 Jugar Demo</a>
       </div>
     </section>
-
-    <!-- Sección 2: Galería + Descripción -->
+    
+    <!-- Sección 2: Galería + Texto -->
     <section class="section-galeria">
       <div class="container">
         <div class="row align-items-center g-5">
+          
           <!-- Galería -->
-          <div class="col-lg-8 col-12">
+          <div class="col-lg-6 col-12">
             <div class="carousel-container position-relative">
-              <i class="fas fa-chevron-left control-prev"></i>
+              <!-- Botones personalizados -->
+              <img src="Media/Interface/btn_izquierda.png" alt="Anterior" class="control-prev gallery-btn" />
+              
+              <!-- Imágenes -->
               <div class="carousel-wrapper">
                 <img src="Media/Screenshoots/cap_01.webp" alt="Captura 1" class="carousel-image active">
                 <img src="Media/Screenshoots/cap_02.webp" alt="Captura 2" class="carousel-image">
                 <img src="Media/Screenshoots/cap_03.webp" alt="Captura 3" class="carousel-image">
                 <img src="Media/Screenshoots/cap_04.webp" alt="Captura 4" class="carousel-image">
               </div>
-              <i class="fas fa-chevron-right control-next"></i>
+
+              <!-- Botón siguiente -->
+              <img src="Media/Interface/btn_derecha.png" alt="Siguiente" class="control-next gallery-btn" />
+
+              <!-- Indicadores -->
               <div class="carousel-indicators mt-3 text-center">
-                <span class="indicator active"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
-                <span class="indicator"></span>
+                <span class="indicator active" aria-label="Captura 1"></span>
+                <span class="indicator" aria-label="Captura 2"></span>
+                <span class="indicator" aria-label="Captura 3"></span>
+                <span class="indicator" aria-label="Captura 4"></span>
               </div>
             </div>
           </div>
-
+          
           <!-- Texto -->
-          <div class="col-lg-4 col-12">
+          <div class="cuadro_texto col-lg-6 col-12 d-flex flex-column justify-content-center">
             <h2 class="mb-4 text-white">¿Qué es CoinsOnly?</h2>
             <p class="lead text-white text-justify">
-                Inspirado en juegos como "Papers Please" y, tanto de manera visual como temática, en juegos como "Have a Nice Death", este juego  te coloca como un trabajador explotado laboralmente en un mundo muy caótico y diferente del que vives: clientes muy variopintos y diferentes (son todos unos plastas, te cuentas su vida y la de otros los desgraciados), objetos mágicos o... mágicamente alterados, una paga muy baja (es importante destacarlo, sí), un jefe que siempre buscará cada día nuevas normas que le harán ganar dinero (pero que te mantendrán muy atento y nunca aburrido), una paga muy muy baja (en serio,  ¿¿¿ cómo paga tan poco???), la satisfacción propia tras recibir una paga MUY MUY MUYYYY baja (acaso es esto denunciable o ya está normalizado???) , y también habrá un montón de coleccionables que obtener, misterios que resolver, diferentes finales, etc.
+              Inspirado en juegos como "Papers Please" y, tanto de manera visual como temática, en juegos como "Have a Nice Death", este juego te coloca como un trabajador explotado laboralmente en un mundo muy caótico y diferente del que vives.
+            </p>
+            <p class="lead text-white text-justify">
+              Clientes muy variopintos y diferentes (son todos unos plastas, te cuentan su vida y la de otros los desgraciados), objetos mágicos o... mágicamente alterados, una paga muy baja (es importante destacarlo, sí), un jefe que siempre buscará cada día nuevas normas que le harán ganar dinero (pero que te mantendrán muy atento y nunca aburrido), una paga muy muy baja (en serio, ¿¿¿cómo paga tan poco???), la satisfacción propia tras recibir una paga MUY MUY MUYYYY baja (¿acaso es esto denunciable o ya está normalizado???), y también habrá un montón de coleccionables que obtener, misterios que resolver, diferentes finales, etc.
             </p>
           </div>
         </div>
       </div>
 
       <!-- Zoom Overlay -->
-      <div class="zoom-overlay" id="zoomOverlay">
+      <div class="zoom-overlay" id="zoomOverlay" aria-hidden="true">
         <img src="" alt="Zoom" id="zoomImage">
       </div>
     </section>
   </main>
 
-  <footer class="bg-dark text-light py-4 mt-auto">
-    <div class="container text-center">
-      <div class="mb-3">
-        <a href="https://www.youtube.com/@SleepySkullStudios/videos" class="text-light me-4" target="_blank">
-          <i class="fab fa-youtube fa-lg me-1"></i> YouTube
-        </a>
-        <a href="https://twitter.com/sleepyskull_" class="text-light me-4" target="_blank">
-          <i class="fab fa-twitter fa-lg me-1"></i> Twitter
-        </a>
-        <a href="https://www.instagram.com/sleepyskullstudios/" class="text-light" target="_blank">
-          <i class="fab fa-instagram fa-lg me-1"></i> Instagram
-        </a>
-      </div>
-      <p class="small mb-0">
-        &copy; 2023 - 2024 SleepySkullStudios. All Rights Reserved.<br>
-        Esta página web y el logo son marcas registradas.
-      </p>
+  <!-- FOOTER -->
+  <footer class="text-center p-4">
+    <div class="social-icons mt-2">
+      <a href="https://youtube.com" target="_blank" aria-label="YouTube" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+      <a href="https://twitter.com" target="_blank" aria-label="Twitter" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+      <a href="https://instagram.com" target="_blank" aria-label="Instagram" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
     </div>
+    
+    <div class="copyright-text text-light">© 2025 CoinsOnly. Todos los derechos reservados.</div>
   </footer>
 
-    <!-- Menú móvil radial -->
+  <!-- Menú radial móvil -->
   <div class="mobile-menu">
-    <button class="menu-toggle" id="menuToggle">
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
       <i class="fas fa-bars"></i>
     </button>
     <div class="menu-items" id="menuItems">
@@ -116,11 +126,10 @@
     </div>
   </div>
 
-
   <!-- JQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <!-- My Script -->
+  <!-- Script Propio -->
   <script src="JS/script.js"></script>
 </body>
 </html>
