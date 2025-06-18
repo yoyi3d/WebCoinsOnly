@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
   const frases = [
-    "Me han dicho que estás buscando trabajo.",
-    "Bienvenido a la web de CoinsOnly.",
-    "Que conste que aquí sólo aceptamos... ¡monedas!",
-    "Pasa y disfruta de nuestros productos."
+    "Bienvenido a mi tienda… aunque dudo que puedas permitirte algo.",
+    "No toques nada si no sabes lo que haces, ¿vale?",
+    "Aceptamos dinero, trueques decentes… y paciencia cero con idiotas.",
+    "si vienes a quejarte, recuerda: el último cliente acabó en el catálogo.",
+    "Disfruta de la tienda… mientras sigas teniendo dinero para mí."
   ];
 
   const dialogo = document.getElementById("dialogo");
