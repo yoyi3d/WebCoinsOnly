@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "Bienvenido a mi tienda… aunque dudo que puedas permitirte algo.",
     "No toques nada si no sabes lo que haces, ¿vale?",
     "Aceptamos dinero, trueques decentes… y paciencia cero con idiotas.",
-    "si vienes a quejarte, recuerda: el último cliente acabó en el catálogo.",
+    "Si vienes a quejarte, recuerda: el último cliente acabó en el catálogo.",
     "Disfruta de la tienda… mientras sigas teniendo dinero para mí."
   ];
 
