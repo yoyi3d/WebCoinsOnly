@@ -1,119 +1,136 @@
-body {
-  background-image: url('../Media/tu_fondo_tileable.png');
-  background-repeat: repeat;
-  background-size: auto;
-  color: #fff;
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=DM+Serif+Display:ital@0;1&family=Fredoka:wght@300..700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-main {
+body, html {
+  height: 100%;
   width: 100%;
-  height: 100vh;
-  backdrop-filter: blur(6px);
-  background: rgba(0, 0, 0, 0.3);
+  background: url('../Media/Tileable_BG.webp') repeat;
   display: flex;
-  align-items: center;
   justify-content: center;
-  text-align: center;
+  align-items: center;
+  font-family:'Fredoka';
+  color: #fff;
 }
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    rgba(52, 86, 39, 0.352) 30%,   /* centro más pequeño */
+    rgba(0, 0, 0, 0.8) 100% /* bordes bien oscuros */
+  );
+  z-index: 0;
+}
+
 
 .contenedor-dialogo {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* todo al fondo */
+  align-items: center;
   width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  margin-top: 5vh;
-  padding: 0 1rem;
+  height: 100%;
+  position: relative;
+  padding-bottom: 0;
 }
 
-#personaje {
-  width: 100%;
-  max-width: 600px;
-  display: block;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-  animation: fadeInUp 1s ease-out;
-  margin-bottom: -80px; /* Ajustar según se necesite */
-  transform: translateY(-20px); /* Súbelo un poco más */
-}
-
-#mostrador {
-  width: 100%;
-  max-width: 900px;
-  display: block;
-  margin: 0 auto;
-  position: relative;
-  z-index: 2;
-}
-
+/* Bocadillo */
 #dialogo {
-  position: absolute;
-  bottom: 60px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  padding: 1.5rem 2rem;
-  font-family: 'Press Start 2P', monospace;
-  font-size: 1rem;
-  color: #fff;
-  background: rgba(0, 0, 0, 0.6);
-  border: 3px solid #ffd700;
+  display: inline-block;
+  max-width: 90%;
+  padding: 0.8rem 1rem;
+  font-family: 'Courier New', monospace;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  color: #000;
+  background: #fff;
+  border: 3px solid #000;
   border-radius: 12px;
-  box-shadow: 0 0 20px #ffdd55;
-  opacity: 0;
-  transition: opacity 0.4s ease-in-out;
-  backdrop-filter: blur(5px);
-  z-index: 3;
-  text-align: justify;
+  position: relative;
+  text-align: left;
+  z-index: 1;
+  box-sizing: border-box;
 }
 
-/* Responsive tweaks */
-@media (min-width: 768px) {
-  #dialogo {
-    font-size: 1.1rem;
-    width: 80%;
-    bottom: 80px;
-  }
-
-  #personaje {
-    margin-bottom: -40px;
-  }
-
-  #mostrador {
-    max-width: 900px;
-    margin-top: -120px;
-  }
+#dialogo::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;   /* baja justo debajo */
+  right: 32px;     /* ajusta según quieras */
+  width: 0;
+  height: 0;
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-top: 15px solid #000;  /* borde negro más grande */
 }
 
-@media (min-width: 1200px) {
-  #dialogo {
-    font-size: 1.2rem;
-    width: 70%;
-    bottom: 90px;
-  }
-
-  #personaje {
-    max-width: 800px;
-  }
-
-  #mostrador {
-    max-width: 1000px;
-    margin-top: -140px;
-  }
+#dialogo::before {
+  content: "";
+  position: absolute;
+  bottom: -12px;   /* un poco más arriba para encajar */
+  right: 34px;     /* lo mismo pero centrado dentro */
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 13px solid #fff;  /* triángulo blanco encima */
 }
 
-@keyframes asomar {
-  0% {
-    transform: translateY(100px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
+
+
+/* Personaje ocupando todo el ancho */
+#personaje {
+  order: 1;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  object-fit: contain;
+  z-index: 2;
+    /* Efecto outline/glow verde */
+  filter:
+    drop-shadow(0 0 5px #57975783)
+    drop-shadow(0 0 10px  #57975783)
+    drop-shadow(0 0 15px  #57975783);
+}
+@keyframes glowVerde {
+  0% { filter: drop-shadow(0 0 5px  #57975783) drop-shadow(0 0 10px  #57975783); }
+  50% { filter: drop-shadow(0 0 8px  #57975783) drop-shadow(0 0 15px  #57975783); }
+  100% { filter: drop-shadow(0 0 5px  #57975783) drop-shadow(0 0 10px  #57975783); }
 }
 
 #personaje {
-  animation: asomar 1.2s ease-out;
+  animation: glowVerde 2s infinite alternate;
 }
 
+
+/* Mesa pegada al fondo */
+#mostrador {
+  order: 2;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  z-index: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #personaje { width: 100%; }
+  #dialogo { font-size: 0.9rem; padding: 0.8rem 1rem; }
+}
+
+@media (max-width: 480px) {
+  #personaje { width: 100%; }
+    #dialogo {font-size: 1.2rem;padding: 0.6rem 0.8rem;}
+  
+}

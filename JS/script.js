@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
   const frases = [
-    "Bienvenido a mi tienda… aunque dudo que puedas permitirte algo.",
-    "No toques nada si no sabes lo que haces, ¿vale?",
-    "Aceptamos dinero, trueques decentes… y paciencia cero con idiotas.",
-    "Si vienes a quejarte, recuerda: el último cliente acabó en el catálogo.",
-    "Disfruta de la tienda… mientras sigas teniendo dinero para mí."
+    "Bienvenido a la tienda online de Coins Only!",
+    "En estos momentos todos nuestros esclavos están ocupados",
+    "Manténgase a la espera mientras le redirigimos a la sucursal vaporosa",
+    "Su tiempo y sobre todo su dinero, nos es muy importante",
+    "Recuerde añadir nuestros productos a su wishlist."
   ];
 
   const dialogo = document.getElementById("dialogo");
@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
     hablandoInterval = setInterval(() => {
       if (personaje) {
         personaje.src = bocaAbierta
-          ? "Media/Minijefe_BocaAbierta.webp"
-          : "Media/Minijefe.webp";
+          ? "Media/holojefe_semitrans.png"
+          : "Media/holojefe_semitrans_BocaAbierta.png";
         bocaAbierta = !bocaAbierta;
       }
     }, 200);
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function stopHablar() {
     clearInterval(hablandoInterval);
-    if (personaje) personaje.src = "Media/Minijefe.webp"; // Boca cerrada
+    if (personaje) personaje.src = "Media/holojefe_semitrans.png";
   }
 
   function mostrarFrase() {
@@ -39,23 +39,21 @@ document.addEventListener("DOMContentLoaded", function () {
     if (dialogo && personaje && index < frases.length) {
       esperando = true;
       dialogo.style.opacity = 0;
-      stopHablar(); // Cierra boca antes de ocultar
+      stopHablar();
 
       setTimeout(() => {
         dialogo.textContent = frases[index];
         index++;
 
         void dialogo.offsetWidth;
-        dialogo.style.opacity = 1;
+        dialogo.style.opacity = 1; // fade in
 
         startHablar();
 
-        // Detener hablar antes de cambiar
         detenerHablaTimeout = setTimeout(() => {
           stopHablar();
         }, 2500);
 
-        // Mostrar siguiente automáticamente
         cambioFraseTimeout = setTimeout(() => {
           esperando = false;
           mostrarFrase();
@@ -68,11 +66,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function avanzarFrase() {
     if (finalizado) return;
-
     clearTimeout(cambioFraseTimeout);
     clearTimeout(detenerHablaTimeout);
     stopHablar();
-
     esperando = false;
     mostrarFrase();
   }
@@ -83,14 +79,13 @@ document.addEventListener("DOMContentLoaded", function () {
     stopHablar();
     setTimeout(() => {
       window.location.href = "https://store.steampowered.com/app/3897600/Coins_Only/";
-    }, 1000); // 1s de pausa tras la última frase
+    }, 1000);
   }
 
   function manejarInteraccion() {
     if (finalizado) return;
-
     if (esperando) {
-      avanzarFrase(); // Avanza una frase
+      avanzarFrase();
     }
   }
 
@@ -99,10 +94,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (dialogo && personaje) {
     dialogo.style.opacity = 0;
-    personaje.src = "Media/Minijefe.webp"; // Boca cerrada de inicio
+    personaje.src = "Media/Minijefe.webp";
     mostrarFrase();
   }
 });
+
 
 
 // --- Carrusel ---
