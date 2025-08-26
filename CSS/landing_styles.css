@@ -26,7 +26,7 @@ body::before {
   pointer-events: none;
   background: radial-gradient(
     circle,
-    rgba(52, 86, 39, 0.352) 30%,   /* centro más pequeño */
+    rgba(39, 82, 86, 0.352) 30%,   /* centro más pequeño */
     rgba(0, 0, 0, 0.8) 100% /* bordes bien oscuros */
   );
   z-index: 0;
@@ -98,14 +98,14 @@ body::before {
   z-index: 2;
     /* Efecto outline/glow verde */
   filter:
-    drop-shadow(0 0 5px #57975783)
-    drop-shadow(0 0 10px  #57975783)
-    drop-shadow(0 0 15px  #57975783);
+    drop-shadow(0 0 5px #9abeba75)
+    drop-shadow(0 0 10px  #9abeba75)
+    drop-shadow(0 0 15px  #9abeba75);
 }
 @keyframes glowVerde {
-  0% { filter: drop-shadow(0 0 5px  #57975783) drop-shadow(0 0 10px  #57975783); }
-  50% { filter: drop-shadow(0 0 8px  #57975783) drop-shadow(0 0 15px  #57975783); }
-  100% { filter: drop-shadow(0 0 5px  #57975783) drop-shadow(0 0 10px  #57975783); }
+  0% { filter: drop-shadow(0 0 5px  #9abeba75) drop-shadow(0 0 10px  #9abeba75); }
+  50% { filter: drop-shadow(0 0 8px  #9abeba75) drop-shadow(0 0 15px  #9abeba75); }
+  100% { filter: drop-shadow(0 0 5px  #9abeba75) drop-shadow(0 0 10px  #9abeba75); }
 }
 
 #personaje {
