@@ -82,8 +82,8 @@ document.addEventListener("DOMContentLoaded", function () {
     finalizado = true;
     stopHablar();
     setTimeout(() => {
-      window.location.href = "main.html";
-    }, 1000);
+      window.location.href = "https://store.steampowered.com/app/3897600/Coins_Only/";
+    }, 1000); // 1s de pausa tras la última frase
   }
 
   function manejarInteraccion() {
@@ -91,8 +91,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (esperando) {
       avanzarFrase(); // Avanza una frase
-    } else {
-      // Si no está esperando (por ejemplo entre frases), no hace nada
     }
   }
 
@@ -106,77 +104,78 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-  // --- Carrusel ---
-  const images = document.querySelectorAll('.carousel-image');
-  const indicators = document.querySelectorAll('.indicator');
 
-  function showImage(index) {
-    images.forEach((img, i) => {
-      img.classList.toggle('active', i === index);
-      indicators[i].classList.toggle('active', i === index);
-    });
-  }
+// --- Carrusel ---
+const images = document.querySelectorAll('.carousel-image');
+const indicators = document.querySelectorAll('.indicator');
 
-  let currentIndex = 0;
+function showImage(index) {
+  images.forEach((img, i) => {
+    img.classList.toggle('active', i === index);
+    indicators[i].classList.toggle('active', i === index);
+  });
+}
 
-  const nextBtn = document.querySelector('.control-next');
-  const prevBtn = document.querySelector('.control-prev');
+let currentIndex = 0;
 
-  if (nextBtn && prevBtn) {
-    nextBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % images.length;
-      showImage(currentIndex);
-    });
+const nextBtn = document.querySelector('.control-next');
+const prevBtn = document.querySelector('.control-prev');
 
-    prevBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      showImage(currentIndex);
-    });
-  }
-
-  indicators.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-      currentIndex = i;
-      showImage(currentIndex);
-    });
+if (nextBtn && prevBtn) {
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % images.length;
+    showImage(currentIndex);
   });
 
-  // --- Zoom ---
-  const zoomOverlay = document.getElementById('zoomOverlay');
-  const zoomImage = document.getElementById('zoomImage');
-
-  images.forEach(img => {
-    img.addEventListener('click', () => {
-      if (zoomOverlay && zoomImage) {
-        zoomImage.src = img.src;
-        zoomOverlay.style.display = 'flex';
-      }
-    });
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    showImage(currentIndex);
   });
+}
 
-  if (zoomOverlay) {
-    zoomOverlay.addEventListener('click', () => {
-      zoomOverlay.style.display = 'none';
-      zoomImage.src = '';
-    });
-  }
-
-  // --- Menú radial ---
-  const menuToggle = document.getElementById("menuToggle");
-  const menuItems = document.getElementById("menuItems");
-
-  if (menuToggle && menuItems) {
-    menuToggle.addEventListener("click", () => {
-      menuItems.classList.toggle("active");
-      menuToggle.classList.toggle("open");
-    });
-  }
+indicators.forEach((dot, i) => {
+  dot.addEventListener('click', () => {
+    currentIndex = i;
+    showImage(currentIndex);
+  });
+});
 
 
-//click cursor
+// --- Zoom ---
+const zoomOverlay = document.getElementById('zoomOverlay');
+const zoomImage = document.getElementById('zoomImage');
 
+images.forEach(img => {
+  img.addEventListener('click', () => {
+    if (zoomOverlay && zoomImage) {
+      zoomImage.src = img.src;
+      zoomOverlay.style.display = 'flex';
+    }
+  });
+});
+
+if (zoomOverlay) {
+  zoomOverlay.addEventListener('click', () => {
+    zoomOverlay.style.display = 'none';
+    zoomImage.src = '';
+  });
+}
+
+
+// --- Menú radial ---
+const menuToggle = document.getElementById("menuToggle");
+const menuItems = document.getElementById("menuItems");
+
+if (menuToggle && menuItems) {
+  menuToggle.addEventListener("click", () => {
+    menuItems.classList.toggle("active");
+    menuToggle.classList.toggle("open");
+  });
+}
+
+
+// --- Click cursor ---
 document.addEventListener("click", function (e) {
-  // Si el clic NO fue dentro de algo con la clase "no-click-anim"
   if (!e.target.closest(".no-click-anim")) {
     document.body.classList.add("clicking");
 
@@ -185,4 +184,3 @@ document.addEventListener("click", function (e) {
     }, 100);
   }
 });
-
